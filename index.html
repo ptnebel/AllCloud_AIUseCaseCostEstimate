@@ -8,279 +8,157 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy:       #0A1628;
-  --navy-mid:   #0F1F3D;
-  --navy-lt:    #162847;
-  --teal:       #00B4D8;
-  --teal-lt:    #00C7E6;
-  --teal-dim:   rgba(0,180,216,.10);
-  --blue:       #0066FF;
-  --blue-dim:   rgba(0,102,255,.12);
-  --white:      #FFFFFF;
-  --off-white:  #EEF4FF;
-  --muted:      #7A90B4;
-  --gen-ai:     #00B4D8;
-  --non-gen:    #0066FF;
-  --infra:      #FF6B35;
-  --card-bg:    rgba(15,31,61,.75);
+  --navy:      #0A1628;
+  --navy-mid:  #0F1F3D;
+  --navy-lt:   #162847;
+  --teal:      #00B4D8;
+  --teal-lt:   #00C7E6;
+  --teal-dim:  rgba(0,180,216,.10);
+  --blue:      #0066FF;
+  --blue-dim:  rgba(0,102,255,.12);
+  --white:     #FFFFFF;
+  --off-white: #EEF4FF;
+  --muted:     #7A90B4;
+  --gen-ai:    #00B4D8;
+  --non-gen:   #0066FF;
+  --infra:     #FF6B35;
+  --card-bg:   rgba(15,31,61,.75);
   --card-border:rgba(0,180,216,.16);
-  --row-hover:  rgba(0,180,216,.06);
+  --row-hover: rgba(0,180,216,.06);
+  --row-active:rgba(0,180,216,.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--navy);
-  color:var(--white);
-  font-family:'Open Sans',sans-serif;
-  font-size:13px;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:
-    linear-gradient(rgba(0,180,216,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,180,216,.035) 1px,transparent 1px);
-  background-size:52px 52px;
-  pointer-events:none;z-index:0;
-}
+body{background:var(--navy);color:var(--white);font-family:'Open Sans',sans-serif;font-size:13px;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,180,216,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,.03) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
 
-/* ── HEADER ── */
-header{
-  position:sticky;top:0;z-index:100;
-  background:#0A1628;
-  border-bottom:1px solid rgba(0,180,216,.15);
-  box-shadow:0 2px 12px rgba(0,0,0,.3);
-  padding:0 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  height:62px;
-}
-.logo{
-  display:flex;align-items:center;
-  background:#ffffff;
-  border-radius:8px;
-  padding:6px 14px;
-  margin-right:0;
-}
-.logo-img{height:34px;width:auto;display:block;}
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:#0A1628;border-bottom:1px solid rgba(0,180,216,.15);box-shadow:0 2px 12px rgba(0,0,0,.3);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{display:flex;align-items:center;background:#fff;border-radius:8px;padding:6px 14px}
+.logo img{height:34px;width:auto;display:block}
 .header-center{display:flex;flex-direction:column;align-items:center;padding:0 28px}
-.header-title{font-size:13px;font-weight:700;color:#ffffff;letter-spacing:.02em}
-.header-sub{font-size:10px;color:rgba(122,144,180,.85)}
-.header-badge{
-  background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.4);
-  border-radius:20px;padding:5px 14px;
-  font-size:10px;font-weight:700;color:#00B4D8;letter-spacing:.07em;text-transform:uppercase;
-}
+.header-title{font-size:13px;font-weight:700;color:#fff;letter-spacing:.02em}
+.header-sub{font-size:10px;color:var(--muted)}
+.header-badge{background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.4);border-radius:20px;padding:5px 14px;font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.07em;text-transform:uppercase}
 
-/* ── LAYOUT ── */
-.page{
-  max-width:1360px;margin:0 auto;
-  padding:36px 48px 72px;
-  position:relative;z-index:1;
-}
+/* PAGE */
+.page{max-width:1400px;margin:0 auto;padding:32px 48px 72px;position:relative;z-index:1}
 
-/* ── SUMMARY STRIP ── */
-.summary-strip{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-  margin-bottom:32px;
-}
-.stat-box{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:10px;padding:18px 22px;
-  display:flex;flex-direction:column;gap:3px;
-}
-.stat-val{font-size:26px;font-weight:800;font-family:'Open Sans',sans-serif}
+/* STAT STRIP */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.stat-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:18px 22px}
+.stat-val{font-size:26px;font-weight:800}
 .stat-val.teal{color:var(--teal)}
 .stat-val.blue{color:var(--blue)}
 .stat-val.orange{color:var(--infra)}
-.stat-val.white{color:var(--white)}
 .stat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-top:4px}
 
-/* ── MAIN GRID ── */
-.main-grid{
-  display:grid;
-  grid-template-columns:1fr 420px;
-  gap:24px;
-  align-items:start;
-}
+/* FILTER BAR */
+.filter-bar{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px 20px;margin-bottom:16px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.fb-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.fb-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+.pill{padding:4px 12px;border-radius:20px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--muted);transition:all .18s;font-family:'Open Sans',sans-serif;white-space:nowrap}
+.pill:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.pill.on{background:rgba(0,180,216,.15);border-color:rgba(0,180,216,.45);color:var(--teal)}
+.pill.on-ind{background:rgba(0,102,255,.14);border-color:rgba(0,102,255,.4);color:#60a5fa}
+.pill.on-up{background:rgba(255,107,53,.14);border-color:rgba(255,107,53,.4);color:var(--infra)}
+.pill.on-buy{background:rgba(168,85,247,.14);border-color:rgba(168,85,247,.4);color:#c084fc}
+.fb-sep{width:1px;height:24px;background:rgba(255,255,255,.08);flex-shrink:0}
 
-/* ── TABLE PANEL ── */
-.panel{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:12px;overflow:hidden;
-}
-.panel-header{
-  padding:20px 24px 16px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.panel-title{font-size:13px;font-weight:700;color:var(--white)}
-.panel-sub{font-size:10px;color:var(--muted);margin-top:2px}
+/* TABLE PANEL */
+.table-panel{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;margin-bottom:20px}
+.table-header{padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
+.table-title{font-size:13px;font-weight:700}
+.table-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.sort-sel{background:var(--navy-mid);border:1px solid var(--card-border);color:#fff;padding:4px 10px;border-radius:6px;font-size:10px;font-family:'Open Sans',sans-serif;cursor:pointer}
 
-/* filter pills */
-.filter-row{padding:12px 24px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.fp{
-  padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600;
-  cursor:pointer;border:1px solid rgba(255,255,255,.1);background:transparent;
-  color:#7A90B4;transition:all .18s;font-family:'Open Sans',sans-serif;
-}
-.fp:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
-.fp.on-gen{background:rgba(0,180,216,.14);border-color:rgba(0,180,216,.4);color:var(--teal)}
-.fp.on-non{background:rgba(0,102,255,.14);border-color:rgba(0,102,255,.4);color:#4D9FFF}
-.fp.on-inf{background:rgba(255,107,53,.14);border-color:rgba(255,107,53,.4);color:var(--infra)}
-.fp.on-rag{background:rgba(255,193,7,.1);border-color:rgba(255,193,7,.35);color:#FFC107}
-.fp-label{font-size:10px;color:var(--muted);font-weight:600;margin-right:2px}
-
-/* use-case table */
 .uc-table{width:100%;border-collapse:collapse}
-.uc-table th{
-  padding:10px 20px;
-  font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
-  text-align:left;border-bottom:1px solid rgba(255,255,255,.07);
-  background:rgba(0,0,0,.15);position:sticky;top:58px;z-index:5;
-}
-.uc-table td{
-  padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.04);
-  vertical-align:middle;
-}
+.uc-table th{padding:10px 20px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.15);white-space:nowrap}
+.uc-table td{padding:11px 20px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
 .uc-table tbody tr{cursor:pointer;transition:background .15s}
 .uc-table tbody tr:hover td{background:var(--row-hover)}
-.uc-table tbody tr.active td{background:rgba(0,180,216,.1);}
+.uc-table tbody tr.active td{background:var(--row-active)}
 .uc-table tbody tr.active td:first-child{border-left:3px solid var(--teal)}
-.rank-num{font-weight:700;color:var(--muted);font-size:11px}
-.uc-name{font-weight:600;font-size:12px;color:var(--white);line-height:1.3}
+.uc-table tbody tr.hidden{display:none}
+.section-row td{background:rgba(0,0,0,.18);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:6px 20px}
+
+.rank-num{font-weight:700;color:var(--muted);font-size:11px;width:28px;display:inline-block}
+.uc-name{font-weight:600;font-size:12px;color:#fff;line-height:1.3}
 .uc-desc{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.4}
-.tier-dot{
-  display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:middle;
-}
+.tier-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:middle;flex-shrink:0}
 .td-high{background:var(--teal)}
 .td-supp{background:var(--blue)}
-.total-range{font-size:11px;font-weight:700;color:var(--teal);white-space:nowrap;font-family:'Open Sans',sans-serif}
-.rag-dot{
-  display:inline-block;width:7px;height:7px;border-radius:50%;
-}
-.rag-yes{background:#FF6B35}
-.rag-opt{background:#FFC107}
-.rag-no{background:rgba(255,255,255,.2)}
+.cost-range{font-size:11px;font-weight:700;color:var(--teal);white-space:nowrap;font-family:'Open Sans',sans-serif}
+.rag-dot{display:inline-block;width:7px;height:7px;border-radius:50%}
+.rag-yes-c{background:#FF6B35}
+.rag-opt-c{background:#FFC107}
+.rag-no-c{background:rgba(255,255,255,.2)}
 
-/* ── RIGHT PANEL — detail + chart ── */
-.right-col{display:flex;flex-direction:column;gap:20px;position:sticky;top:78px}
+/* persona / industry chips in table */
+.chip-row{display:flex;gap:4px;flex-wrap:wrap;max-width:300px}
+.chip{display:inline-block;padding:2px 7px;border-radius:10px;font-size:9px;font-weight:600;white-space:nowrap}
+.chip-ind{background:rgba(0,102,255,.15);color:#60a5fa;border:1px solid rgba(0,102,255,.25)}
+.chip-up{background:rgba(255,107,53,.13);color:#FF9A70;border:1px solid rgba(255,107,53,.25)}
+.chip-buy{background:rgba(168,85,247,.13);color:#c084fc;border:1px solid rgba(168,85,247,.25)}
 
-/* placeholder */
-.placeholder{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:12px;padding:48px 32px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;gap:12px;min-height:200px;
-}
-.placeholder-icon{
-  width:52px;height:52px;border-radius:12px;
-  background:var(--teal-dim);border:1px solid rgba(0,180,216,.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;
-}
-.placeholder-title{font-weight:700;font-size:14px;color:var(--muted)}
-.placeholder-sub{font-size:11px;color:rgba(122,144,180,.6);line-height:1.5}
+/* DRILL DOWN PANEL */
+.drill-panel{display:none;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;animation:fadeUp .25s ease}
+.drill-panel.visible{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* detail card */
-.detail-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:12px;overflow:hidden;
-  display:none;
-  animation:fadeUp .25s ease;
-}
-.detail-card.visible{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.detail-head{
-  padding:22px 24px;
-  background:linear-gradient(135deg,rgba(0,180,216,.12),rgba(0,102,255,.08));
-  border-bottom:1px solid var(--card-border);
-}
-.detail-rank{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:4px}
-.detail-name{font-size:15px;font-weight:800;line-height:1.25;margin-bottom:4px}
-.detail-sub{font-size:11px;color:var(--muted);line-height:1.5}
-.detail-body{padding:22px 24px}
-.detail-section{margin-bottom:16px}
-.detail-section:last-child{margin-bottom:0}
-.ds-label{
-  font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
-  margin-bottom:8px;
-}
-.ds-label.gen{color:var(--teal)}
-.ds-label.non{color:#4D9FFF}
-.ds-label.inf{color:var(--infra)}
-.ds-label.just{color:var(--muted)}
-.ds-text{font-size:11px;color:var(--off-white);line-height:1.6}
+.drill-head{padding:22px 28px;background:linear-gradient(135deg,rgba(0,180,216,.13),rgba(0,102,255,.07));border-bottom:1px solid var(--card-border);display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.drill-head-left{flex:1}
+.drill-rank{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
+.drill-name{font-size:18px;font-weight:800;line-height:1.2;margin-bottom:5px}
+.drill-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.drill-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.rag-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+.rb-yes{background:rgba(255,107,53,.15);color:#FF6B35;border:1px solid rgba(255,107,53,.3)}
+.rb-opt{background:rgba(255,193,7,.1);color:#FFC107;border:1px solid rgba(255,193,7,.28)}
+.rb-no{background:rgba(0,180,216,.1);color:var(--teal);border:1px solid rgba(0,180,216,.25)}
+.close-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--muted);cursor:pointer;padding:6px 14px;border-radius:8px;font-size:11px;font-family:'Open Sans',sans-serif;transition:all .15s;flex-shrink:0}
+.close-btn:hover{background:rgba(255,255,255,.12);color:#fff}
 
-/* cost bars in detail */
-.cost-bars{margin:14px 0 4px}
-.cb-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.cb-label{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);width:60px;flex-shrink:0;font-weight:600}
+/* drill body grid */
+.drill-body{padding:24px 28px}
+.drill-grid-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:20px}
+.drill-grid-bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.d-section{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:16px}
+.d-section.full{grid-column:1/-1}
+.d-label{font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:8px}
+.d-label.gen{color:var(--teal)}
+.d-label.non{color:#4D9FFF}
+.d-label.inf{color:var(--infra)}
+.d-label.just{color:var(--muted)}
+.d-label.cap{color:#c084fc}
+.d-text{font-size:11px;color:var(--off-white);line-height:1.65}
+
+/* cost bars */
+.cost-bars{margin:0 0 4px}
+.cb-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.cb-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);width:62px;flex-shrink:0;font-weight:600}
 .cb-track{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
 .cb-fill{height:100%;border-radius:4px;transition:width .7s cubic-bezier(.4,0,.2,1)}
 .cb-fill.gen{background:linear-gradient(90deg,var(--teal),var(--teal-lt))}
 .cb-fill.non{background:linear-gradient(90deg,var(--blue),#4D9FFF)}
 .cb-fill.inf{background:linear-gradient(90deg,var(--infra),#FF9A70)}
-.cb-amt{font-size:10px;font-weight:700;width:80px;text-align:right;flex-shrink:0;font-family:'Open Sans',sans-serif}
+.cb-amt{font-size:10px;font-weight:700;width:88px;text-align:right;flex-shrink:0}
 .cb-amt.gen{color:var(--teal)}
 .cb-amt.non{color:#4D9FFF}
 .cb-amt.inf{color:var(--infra)}
 
-.rag-badge-detail{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:9px;font-weight:700;padding:3px 10px;border-radius:20px;
-  text-transform:uppercase;letter-spacing:.06em;margin-top:10px;
-}
-.rb-yes{background:rgba(255,107,53,.15);color:#FF6B35;border:1px solid rgba(255,107,53,.3)}
-.rb-opt{background:rgba(255,193,7,.1);color:#FFC107;border:1px solid rgba(255,193,7,.28)}
-.rb-no {background:rgba(0,180,216,.1);color:var(--teal);border:1px solid rgba(0,180,216,.25)}
+/* chart */
+.chart-wrap{position:relative;height:180px;margin-top:8px}
 
-/* chart card */
-.chart-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:12px;padding:22px 24px;
-  display:none;
-  animation:fadeUp .3s ease .05s both;
-}
-.chart-card.visible{display:block}
-.chart-title{font-size:12px;font-weight:700;margin-bottom:2px}
-.chart-sub{font-size:10px;color:var(--muted);margin-bottom:14px}
-.chart-wrap{position:relative}
-
-/* legend strip */
-.legend{display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap}
-.leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}
-.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-
-/* scrollable table */
-.table-scroll{max-height:calc(100vh - 280px);overflow-y:auto}
-.table-scroll::-webkit-scrollbar{width:4px}
-.table-scroll::-webkit-scrollbar-track{background:transparent}
-.table-scroll::-webkit-scrollbar-thumb{background:var(--navy-lt);border-radius:2px}
-
-/* section row */
-.section-row td{
-  background:rgba(0,0,0,.2);
-  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
-  color:var(--muted);padding:7px 20px;
-}
-
-/* ── FOOTER ── */
-footer{
-  border-top:1px solid var(--card-border);
-  padding:18px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:10px;color:var(--muted);
-  position:relative;z-index:1;
-  margin-top:40px;
-}
+/* no-results */
+.no-results{padding:32px;text-align:center;color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <img src="https://allcloud.io/wp-content/uploads/2022/07/AllCloud-logo.png" alt="AllCloud" class="logo-img">
+    <img src="https://allcloud.io/wp-content/uploads/2022/07/AllCloud-logo.png" alt="AllCloud">
   </div>
   <div class="header-center">
     <div class="header-title">AI Fusion — AWS Cost Intelligence</div>
@@ -291,150 +169,166 @@ footer{
 
 <div class="page">
 
-  <!-- SUMMARY STRIP -->
-  <div class="summary-strip">
-    <div class="stat-box">
-      <div class="stat-val teal" id="s-lo">$13.7K</div>
-      <div class="stat-lbl">Total Monthly Low</div>
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-box"><div class="stat-val teal" id="s-lo">—</div><div class="stat-lbl">Monthly Low (filtered)</div></div>
+    <div class="stat-box"><div class="stat-val blue" id="s-hi">—</div><div class="stat-lbl">Monthly High (filtered)</div></div>
+    <div class="stat-box"><div class="stat-val teal" id="s-gen-pct">—</div><div class="stat-lbl">GenAI Share (mid)</div></div>
+    <div class="stat-box"><div class="stat-val orange" id="s-count">—</div><div class="stat-lbl">Matching Use Cases</div></div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="fb-group">
+      <span class="fb-label">Tier</span>
+      <button class="pill on" id="f-high" onclick="toggleFilter('tier','high',this)">High Value</button>
+      <button class="pill on" id="f-supp" onclick="toggleFilter('tier','supp',this)">Supplemental</button>
     </div>
-    <div class="stat-box">
-      <div class="stat-val blue" id="s-hi">$61.9K</div>
-      <div class="stat-lbl">Total Monthly High</div>
+    <div class="fb-sep"></div>
+    <div class="fb-group" id="ind-pills">
+      <span class="fb-label">Industry</span>
     </div>
-    <div class="stat-box">
-      <div class="stat-val teal" id="s-gen-pct">—</div>
-      <div class="stat-lbl">GenAI Share (mid)</div>
+    <div class="fb-sep"></div>
+    <div class="fb-group" id="up-pills">
+      <span class="fb-label">User Persona</span>
     </div>
-    <div class="stat-box">
-      <div class="stat-val orange" id="s-rag">9 / 20</div>
-      <div class="stat-lbl">Use Cases Needing RAG</div>
+    <div class="fb-sep"></div>
+    <div class="fb-group" id="buy-pills">
+      <span class="fb-label">Buyer Persona</span>
+    </div>
+    <div class="fb-sep"></div>
+    <div class="fb-group">
+      <span class="fb-label">RAG</span>
+      <button class="pill" id="f-rag" onclick="toggleFilter('rag','yes',this)">Required Only</button>
+    </div>
+    <div style="margin-left:auto">
+      <button class="pill" onclick="clearFilters()" style="border-color:rgba(255,255,255,.2);color:var(--muted)">Clear All</button>
     </div>
   </div>
 
-  <!-- MAIN GRID -->
-  <div class="main-grid">
-
-    <!-- LEFT: table -->
-    <div class="panel">
-      <div class="panel-header">
-        <div>
-          <div class="panel-title">Use Cases</div>
-          <div class="panel-sub">Select a row to see cost breakdown and details</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <span style="font-size:10px;color:var(--muted)">Sort by:</span>
-          <select id="sort-sel" onchange="renderTable()" style="background:#f8fafc;border:1px solid #cbd5e1;color:#334155;padding:3px 8px;border-radius:6px;font-size:10px;font-family:'Open Sans',sans-serif;cursor:pointer">
-            <option value="rank">Rank</option>
-            <option value="total-lo">Total Low ↑</option>
-            <option value="total-hi">Total High ↑</option>
-            <option value="gen-pct">GenAI % ↓</option>
-          </select>
-        </div>
+  <!-- TABLE PANEL -->
+  <div class="table-panel">
+    <div class="table-header">
+      <div>
+        <div class="table-title">AI Use Cases</div>
+        <div class="table-sub" id="table-sub-text">Select a row to expand cost breakdown · <span id="match-count">20</span> use cases shown</div>
       </div>
-      <div class="filter-row">
-        <span class="fp-label">Tier:</span>
-        <button class="fp on-gen" id="f-hv" onclick="toggleF('hv')">High Value</button>
-        <button class="fp on-non" id="f-sp" onclick="toggleF('sp')">Supplemental</button>
-        <span class="fp-label" style="margin-left:8px">RAG:</span>
-        <button class="fp" id="f-rag" onclick="toggleF('rag')">RAG Required</button>
-      </div>
-      <div class="table-scroll">
-        <table class="uc-table">
-          <thead>
-            <tr>
-              <th style="width:36px">#</th>
-              <th>Use Case</th>
-              <th style="width:110px">Total Range/mo</th>
-              <th style="width:38px" title="RAG required?">RAG</th>
-            </tr>
-          </thead>
-          <tbody id="table-body"></tbody>
-        </table>
-      </div>
+      <select class="sort-sel" id="sort-sel" onchange="renderTable()">
+        <option value="rank">Sort: Rank</option>
+        <option value="total-lo">Sort: Total Low ↑</option>
+        <option value="total-hi">Sort: Total High ↑</option>
+        <option value="gen-pct">Sort: GenAI % ↓</option>
+      </select>
     </div>
-
-    <!-- RIGHT: detail + chart -->
-    <div class="right-col">
-
-      <!-- placeholder shown until selection -->
-      <div class="placeholder" id="placeholder">
-        <div class="placeholder-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" stroke="#00B4D8" stroke-width="1.8" stroke-linecap="round"/>
-            <rect x="9" y="3" width="6" height="4" rx="1" stroke="#00B4D8" stroke-width="1.8"/>
-            <line x1="9" y1="12" x2="15" y2="12" stroke="#00B4D8" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="9" y1="15" x2="13" y2="15" stroke="#00B4D8" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="placeholder-title">Select a use case</div>
-        <div class="placeholder-sub">Click any row in the table to view cost breakdown, service details, and visualizations</div>
-      </div>
-
-      <!-- detail card (hidden until selection) -->
-      <div class="detail-card" id="detail-card">
-        <div class="detail-head">
-          <div class="detail-rank" id="dp-rank"></div>
-          <div class="detail-name" id="dp-name"></div>
-          <div class="detail-sub" id="dp-sub"></div>
-          <div id="dp-rag-badge"></div>
-        </div>
-        <div class="detail-body">
-          <div class="cost-bars" id="dp-bars"></div>
-          <div style="border-top:1px solid rgba(255,255,255,.06);margin:14px 0 14px"></div>
-          <div class="detail-section">
-            <div class="ds-label gen">GenAI Services (Bedrock)</div>
-            <div class="ds-text" id="dp-gen"></div>
-          </div>
-          <div class="detail-section">
-            <div class="ds-label non">Non-GenAI Services</div>
-            <div class="ds-text" id="dp-non"></div>
-          </div>
-          <div class="detail-section">
-            <div class="ds-label inf">Infrastructure &amp; Security</div>
-            <div class="ds-text" id="dp-inf"></div>
-          </div>
-          <div class="detail-section" style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)">
-            <div class="ds-label just">Cost Justification</div>
-            <div class="ds-text" id="dp-just"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- chart card (hidden until selection) -->
-      <div class="chart-card" id="chart-card">
-        <div class="legend">
-          <div class="leg-item"><span class="leg-dot" style="background:var(--teal)"></span>GenAI</div>
-          <div class="leg-item"><span class="leg-dot" style="background:var(--blue)"></span>Non-GenAI</div>
-          <div class="leg-item"><span class="leg-dot" style="background:var(--infra)"></span>Infra/Sec</div>
-        </div>
-        <div class="chart-title" id="ct-title"></div>
-        <div class="chart-sub">Monthly cost breakdown — Low vs High estimate</div>
-        <div class="chart-wrap" style="height:200px">
-          <canvas id="detail-chart"></canvas>
-        </div>
-      </div>
-
+    <div>
+      <table class="uc-table">
+        <thead>
+          <tr>
+            <th style="width:40px">#</th>
+            <th style="min-width:220px">Use Case</th>
+            <th>Business Capability</th>
+            <th style="min-width:200px">Industries</th>
+            <th style="min-width:160px">User Persona</th>
+            <th style="min-width:160px">Buyer Persona</th>
+            <th style="width:120px">Total Range/mo</th>
+            <th style="width:40px" title="RAG required?">RAG</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+      <div class="no-results" id="no-results" style="display:none">No use cases match the selected filters.</div>
     </div>
   </div>
-</div>
 
-<footer>
+  <!-- DRILL DOWN PANEL -->
+  <div class="drill-panel" id="drill-panel">
+    <div class="drill-head">
+      <div class="drill-head-left">
+        <div class="drill-rank" id="dp-rank"></div>
+        <div class="drill-name" id="dp-name"></div>
+        <div class="drill-desc" id="dp-desc"></div>
+        <div class="drill-chips" id="dp-chips"></div>
+      </div>
+      <button class="close-btn" onclick="closeDrill()">✕ Close</button>
+    </div>
+    <div class="drill-body">
+      <div class="drill-grid-top">
+        <div class="d-section">
+          <div class="d-label cap">Business Capability</div>
+          <div class="d-text" id="dp-cap"></div>
+        </div>
+        <div class="d-section">
+          <div class="d-label gen">GenAI Services</div>
+          <div class="d-text" id="dp-gen"></div>
+        </div>
+        <div class="d-section">
+          <div class="d-label non">Non-GenAI Services</div>
+          <div class="d-text" id="dp-non"></div>
+        </div>
+      </div>
+      <div class="drill-grid-bottom">
+        <div class="d-section">
+          <div class="d-label inf">Infrastructure &amp; Security</div>
+          <div class="d-text" id="dp-inf"></div>
+          <div class="cost-bars" id="dp-bars" style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)"></div>
+        </div>
+        <div class="d-section">
+          <div class="d-label gen" style="margin-bottom:4px">Cost Breakdown — Low vs High</div>
+          <div class="chart-wrap"><canvas id="drill-chart"></canvas></div>
+        </div>
+      </div>
+      <div class="d-section full" style="margin-top:18px">
+        <div class="d-label just">Cost Justification</div>
+        <div class="d-text" id="dp-just"></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<footer style="border-top:1px solid var(--card-border);padding:18px 48px;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--muted);position:relative;z-index:1;margin-top:0">
   <div>© 2026 AllCloud · AI Fusion AWS Cost Intelligence</div>
   <div>AWS list pricing Mar 2026 · Annual estimates for 1,000-employee business</div>
 </footer>
 
 <script>
-/* ── DATA ── */
+/* ═══════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════ */
+const INDUSTRIES = [
+  "Cross-Industry","Financial Services","Manufacturing","Retail & E-commerce",
+  "Logistics & Supply Chain","Healthcare","B2B / SaaS","Legal & Compliance",
+  "Human Resources","Consumer Goods","Government & Public Sector","Energy & Utilities"
+];
+const USER_PERSONAS = [
+  "Operations Analyst","Sales Representative","Finance Analyst","IT / Security Analyst",
+  "HR Specialist","Supply Chain Planner","Marketing Specialist","Customer Support Agent",
+  "Compliance Officer","Data Analyst","Software Developer","Procurement Manager"
+];
+const BUYER_PERSONAS = [
+  "COO / VP Operations","CRO / VP Sales","CFO / Finance Director","CISO / CTO",
+  "CHRO / VP People","CMO / VP Marketing","Chief Compliance Officer","CDO / Chief Data Officer",
+  "CIO / VP Technology","CEO / General Counsel","VP Customer Success","Plant Manager / VP Operations"
+];
+
 const UC = [
   {rank:1,name:"Call Center Analytics",tier:"high",
+   cap:"Transforms raw call recordings into structured intelligence — automated transcription, sentiment scoring, QA grading, and agent coaching insights delivered at scale without manual review.",
+   industries:["Cross-Industry","Retail & E-commerce","Financial Services"],
+   userPersonas:["Customer Support Agent","Operations Analyst","IT / Security Analyst"],
+   buyerPersonas:["COO / VP Operations","VP Customer Success"],
    genLo:1200,genHi:4500,nonLo:400,nonHi:1200,infLo:250,infHi:600,
    rag:"No",ragCost:"$0",kbSize:"N/A",
    sub:"Transcription, sentiment analysis, automated QA scoring",
    genSvc:"Bedrock (Claude 3 Sonnet) — sentiment/QA scoring; Amazon Transcribe; AgentCore Flows",
    nonSvc:"Amazon Connect / S3 (call recordings); Lambda; Kinesis Data Streams; RDS (QA results store)",
-   infSvc:"WAF on API Gateway; CloudTrail; KMS for audio PII; IAM least-privilege; VPC private endpoints; CloudWatch dashboards",
+   infSvc:"WAF on API Gateway; CloudTrail; KMS for audio PII; IAM least-privilege; VPC private endpoints; CloudWatch",
    just:"GenAI: ~1,000 calls/day × 5 min avg × Transcribe + Bedrock per-call summary. Non-GenAI: Kinesis ingestion + S3 storage scale with call volume. Infra: WAF + KMS required for PII in audio recordings."},
   {rank:2,name:"Email Extraction & Classification",tier:"high",
+   cap:"Eliminates manual email triage by automatically parsing, classifying, and routing inbound messages — extracting structured data fields and triggering downstream workflows with 80%+ labour reduction.",
+   industries:["Cross-Industry","Logistics & Supply Chain","Financial Services"],
+   userPersonas:["Operations Analyst","Finance Analyst","Procurement Manager"],
+   buyerPersonas:["COO / VP Operations","CFO / Finance Director"],
    genLo:400,genHi:1800,nonLo:150,nonHi:500,infLo:150,infHi:400,
    rag:"No",ragCost:"$0",kbSize:"N/A",
    sub:"80%+ reduction in manual processing, automated data extraction",
@@ -443,6 +337,10 @@ const UC = [
    infSvc:"SES inbound DKIM/DMARC; KMS encryption at rest; IAM for ERP connector; CloudTrail; GuardDuty anomaly detection",
    just:"Haiku is cheapest model — low cost even at 1,000 emails/day. SQS + Lambda queue architecture adds moderate baseline. GuardDuty critical for data exfiltration risk on email pipelines."},
   {rank:3,name:"Sales Automation & Lead Enrichment",tier:"high",
+   cap:"Frees sales reps from research and admin by auto-enriching lead profiles, scoring opportunities, and generating personalised outreach drafts — saving 12+ hours/week per rep and improving pipeline quality.",
+   industries:["Cross-Industry","B2B / SaaS","Retail & E-commerce"],
+   userPersonas:["Sales Representative","Marketing Specialist","Data Analyst"],
+   buyerPersonas:["CRO / VP Sales","CMO / VP Marketing"],
    genLo:600,genHi:2500,nonLo:200,nonHi:700,infLo:150,infHi:500,
    rag:"Optional",ragCost:"$350–$500",kbSize:"~500 docs",
    sub:"LinkedIn enrichment, lead scoring, 12+ hours saved/week per rep",
@@ -451,6 +349,10 @@ const UC = [
    infSvc:"API Gateway + WAF for CRM webhooks; Secrets Manager for API keys; IAM roles per rep cohort; CloudTrail; VPC endpoints",
    just:"Sonnet drafting is the main cost driver. CRM API calls + Step Functions add meaningful baseline. Secrets Manager mandatory for third-party API key security."},
   {rank:4,name:"Finance Operations — Invoice Processing",tier:"high",
+   cap:"Eliminates AP bottlenecks by automatically extracting, validating, and reconciling invoice data against ERP records with 98% accuracy — reducing processing time from days to minutes.",
+   industries:["Financial Services","Cross-Industry","Logistics & Supply Chain"],
+   userPersonas:["Finance Analyst","Operations Analyst","Procurement Manager"],
+   buyerPersonas:["CFO / Finance Director","COO / VP Operations"],
    genLo:800,genHi:3200,nonLo:350,nonHi:1000,infLo:300,infHi:700,
    rag:"No",ragCost:"$0",kbSize:"N/A",
    sub:"OCR + ERP integration, 98% accuracy automated processing",
@@ -459,6 +361,10 @@ const UC = [
    infSvc:"KMS encryption (PII financial data); Macie (S3 PII scanning); WAF; IAM strict roles; CloudTrail + Config",
    just:"Bedrock Data Automation per-page pricing dominates at scale. Textract fallback + ERP API calls add cost. Macie + strict IAM required for SOX/PCI compliance alignment."},
   {rank:5,name:"Customer Support Chatbots",tier:"high",
+   cap:"Deploys always-on, multilingual AI agents that resolve Tier-1 and Tier-2 support queries from a live knowledge base — reducing ticket volume, cutting wait times, and freeing human agents for complex cases.",
+   industries:["Retail & E-commerce","B2B / SaaS","Cross-Industry"],
+   userPersonas:["Customer Support Agent","Operations Analyst","Software Developer"],
+   buyerPersonas:["VP Customer Success","COO / VP Operations"],
    genLo:900,genHi:5000,nonLo:300,nonHi:1200,infLo:250,infHi:800,
    rag:"Yes",ragCost:"$350–$700",kbSize:"~2,000 docs",
    sub:"Multi-lingual, context-aware 24/7 support automation",
@@ -467,6 +373,10 @@ const UC = [
    infSvc:"WAF on chat endpoint (bot/abuse protection); Cognito / SSO; KMS; CloudFront (DDoS); IAM; CloudWatch alarms",
    just:"RAG Knowledge Base query costs + Bedrock sessions add up at 1,000 sessions/day. OpenSearch Serverless OCU minimum (~$350/mo base). WAF + CloudFront critical for public-facing bot endpoint."},
   {rank:6,name:"IT Operations & Security (SOC)",tier:"high",
+   cap:"Augments SOC analysts with an AI co-pilot that triages alerts, correlates threat signals, and executes automated response playbooks — reducing mean-time-to-respond and combating analyst alert fatigue.",
+   industries:["Cross-Industry","Financial Services","B2B / SaaS"],
+   userPersonas:["IT / Security Analyst","Operations Analyst","Compliance Officer"],
+   buyerPersonas:["CISO / CTO","CIO / VP Technology"],
    genLo:1500,genHi:6000,nonLo:600,nonHi:2000,infLo:500,infHi:1500,
    rag:"Yes",ragCost:"$500–$1,000",kbSize:"~5,000+ docs",
    sub:"Autonomous security operations, threat detection & response",
@@ -475,6 +385,10 @@ const UC = [
    infSvc:"Security Hub + GuardDuty (baseline); CloudTrail multi-region; Config rules; Inspector; IAM strict roles; VPC Flow Logs; KMS; Macie",
    just:"High alert volume drives continuous Sonnet inference. Kinesis real-time stream + SIEM integration adds significant baseline. Full AWS security stack — this use case IS the security layer."},
   {rank:7,name:"Intelligent Document Processing",tier:"high",
+   cap:"Converts unstructured documents — contracts, statements, applications — into structured, actionable data using advanced OCR and NLP, eliminating manual data entry and accelerating downstream processes.",
+   industries:["Financial Services","Legal & Compliance","Cross-Industry"],
+   userPersonas:["Finance Analyst","Compliance Officer","Operations Analyst"],
+   buyerPersonas:["CDO / Chief Data Officer","CFO / Finance Director"],
    genLo:1000,genHi:4200,nonLo:400,nonHi:1200,infLo:250,infHi:700,
    rag:"Optional",ragCost:"$350–$500",kbSize:"~1,000 docs",
    sub:"Advanced OCR + NLP for complex financial documents",
@@ -483,6 +397,10 @@ const UC = [
    infSvc:"KMS encryption; Macie (PII detection on ingested docs); IAM; CloudTrail; VPC endpoints for Bedrock; WAF on intake API",
    just:"Bedrock Data Automation per-page cost × document volume. Textract supplement + Step Functions routing. Macie PII scanning mandatory for financial documents."},
   {rank:8,name:"Regulations & Compliance Intelligence",tier:"high",
+   cap:"Provides compliance teams with an AI copilot that maps regulatory requirements to business controls, surfaces gaps, and monitors for regulatory changes — transforming weeks of manual analysis into hours.",
+   industries:["Financial Services","Legal & Compliance","Healthcare"],
+   userPersonas:["Compliance Officer","Finance Analyst","IT / Security Analyst"],
+   buyerPersonas:["Chief Compliance Officer","CEO / General Counsel"],
    genLo:700,genHi:3000,nonLo:350,nonHi:1000,infLo:300,infHi:800,
    rag:"Yes",ragCost:"$700–$1,400",kbSize:"~10,000+ docs",
    sub:"Compliance validation, regulatory requirement mapping",
@@ -491,6 +409,10 @@ const UC = [
    infSvc:"KMS; CloudTrail (audit-ready query log); IAM (compliance team only); Config; WAF; VPC private endpoints; TLS 1.2+",
    just:"Regulatory KB can be large (10GB+) — storage + query costs significant. Automated corpus refresh adds Lambda + EventBridge cost. Full audit trail via CloudTrail is a compliance requirement."},
   {rank:9,name:"Sales Agent for Tenders",tier:"high",
+   cap:"Automates the full RFP/tender lifecycle — qualifying bids for fit, researching requirements, and drafting compliant responses grounded in past proposals and product specs — dramatically improving win rates and response speed.",
+   industries:["B2B / SaaS","Government & Public Sector","Cross-Industry"],
+   userPersonas:["Sales Representative","Procurement Manager","Operations Analyst"],
+   buyerPersonas:["CRO / VP Sales","CEO / General Counsel"],
    genLo:500,genHi:2800,nonLo:150,nonHi:600,infLo:150,infHi:450,
    rag:"Yes",ragCost:"$350–$700",kbSize:"~1,500 proposals",
    sub:"Automated tender qualification and response generation",
@@ -499,6 +421,10 @@ const UC = [
    infSvc:"Secrets Manager (portal credentials); KMS; IAM; CloudTrail; WAF on submission API; VPC endpoints",
    just:"Opus model for complex RFPs drives high-end cost. Low volume (5–30 tenders/mo) keeps low end modest. Secrets Manager critical for tender portal API credentials."},
   {rank:10,name:"Predictive Maintenance",tier:"high",
+   cap:"Predicts equipment failures before they occur by analysing sensor streams against historical patterns and maintenance records — reducing unplanned downtime 30–50% and capturing tribal knowledge from experienced engineers.",
+   industries:["Manufacturing","Energy & Utilities","Logistics & Supply Chain"],
+   userPersonas:["Operations Analyst","Supply Chain Planner","IT / Security Analyst"],
+   buyerPersonas:["Plant Manager / VP Operations","COO / VP Operations"],
    genLo:600,genHi:2500,nonLo:400,nonHi:1500,infLo:200,infHi:600,
    rag:"Yes",ragCost:"$350–$700",kbSize:"~2,000 manuals",
    sub:"30–50% reduction in unplanned downtime, tribal knowledge capture",
@@ -507,6 +433,10 @@ const UC = [
    infSvc:"IoT Device Defender (sensor security); KMS; VPC; IAM; CloudTrail; GuardDuty; CloudWatch alarms on sensor anomalies",
    just:"Periodic batch analysis keeps GenAI costs manageable. IoT Core + Timestream for sensor data is the dominant non-GenAI cost driver. IoT Device Defender mandatory for OT/IT convergence security."},
   {rank:11,name:"Personalized Loan Offers",tier:"supp",
+   cap:"Combines ML-based credit risk scoring with AI-generated personalised offer narratives — accelerating loan decisioning, improving approval accuracy, and enabling compliant automated credit explanations at scale.",
+   industries:["Financial Services","Retail & E-commerce"],
+   userPersonas:["Finance Analyst","Compliance Officer","Data Analyst"],
+   buyerPersonas:["CFO / Finance Director","Chief Compliance Officer"],
    genLo:800,genHi:3500,nonLo:500,nonHi:1500,infLo:400,infHi:1200,
    rag:"Optional",ragCost:"$350–$500",kbSize:"~300 product rules",
    sub:"ML-based financing recommendations, credit risk assessment",
@@ -515,6 +445,10 @@ const UC = [
    infSvc:"Macie (PII/financial data scanning); KMS; WAF; CloudTrail (regulatory audit); IAM strict separation; Config; Shield Standard; VPC private subnets",
    just:"Guardrails + per-assessment Sonnet inference. Core banking API + SageMaker ML model adds significant baseline. Highest infra spend due to financial regulatory requirements (FCRA/ECOA)."},
   {rank:12,name:"Freight Operations Automation",tier:"supp",
+   cap:"Slashes quote turnaround from hours to minutes by automatically parsing shipment requests, matching optimal carriers, and generating pricing — enabling 90% faster responses and reducing lost deals to competitors.",
+   industries:["Logistics & Supply Chain","Manufacturing","Retail & E-commerce"],
+   userPersonas:["Operations Analyst","Procurement Manager","Supply Chain Planner"],
+   buyerPersonas:["COO / VP Operations","CFO / Finance Director"],
    genLo:500,genHi:2200,nonLo:250,nonHi:800,infLo:150,infHi:450,
    rag:"No",ragCost:"$0",kbSize:"N/A",
    sub:"Automated quote and shipping processing, 90% faster quoting",
@@ -523,6 +457,10 @@ const UC = [
    infSvc:"Secrets Manager (TMS/carrier API keys); KMS; IAM; WAF on quote API; CloudTrail; VPC endpoints",
    just:"Haiku keeps inference cost low even at 500 quotes/day. TMS API integration + SQS queue architecture modest. Secrets Manager essential for multiple carrier API credentials."},
   {rank:13,name:"Document Verification & Compliance",tier:"supp",
+   cap:"Accelerates legal review cycles 80–90% by AI-reviewing contracts for clause compliance, anomalous terms, and signature authenticity — reducing legal bottlenecks and contract execution risk.",
+   industries:["Legal & Compliance","Financial Services","Cross-Industry"],
+   userPersonas:["Compliance Officer","Finance Analyst","Operations Analyst"],
+   buyerPersonas:["CEO / General Counsel","Chief Compliance Officer"],
    genLo:600,genHi:2800,nonLo:250,nonHi:800,infLo:200,infHi:600,
    rag:"Yes",ragCost:"$350–$700",kbSize:"~1,000 legal standards",
    sub:"Signature authentication, 80–90% faster contract review",
@@ -531,6 +469,10 @@ const UC = [
    infSvc:"KMS; Macie (contract PII); IAM (legal team segregation); CloudTrail; WAF; VPC; TLS enforcement",
    just:"Long-context Sonnet for complex contracts + legal KB queries. DocuSign API + Step Functions workflow. Macie + strict IAM for attorney-client privileged documents."},
   {rank:14,name:"HR Legal Knowledge Base",tier:"supp",
+   cap:"Gives every employee instant, accurate answers to HR policy and employment law questions via a secure AI chatbot — eliminating HRBP bottlenecks and ensuring consistent, up-to-date policy guidance.",
+   industries:["Human Resources","Cross-Industry","Legal & Compliance"],
+   userPersonas:["HR Specialist","Operations Analyst","Compliance Officer"],
+   buyerPersonas:["CHRO / VP People","CEO / General Counsel"],
    genLo:200,genHi:900,nonLo:150,nonHi:500,infLo:150,infHi:400,
    rag:"Yes",ragCost:"$350–$500",kbSize:"~500 policies",
    sub:"Semantic search with embeddings, instant policy access",
@@ -539,6 +481,10 @@ const UC = [
    infSvc:"Cognito MFA; KMS; IAM (HR-only access); CloudTrail; WAF on chatbot API; VPC endpoints; Config compliance rules",
    just:"Haiku + small KB keeps this the lowest-cost use case. OpenSearch Serverless minimum OCU baseline (~$200/mo). Cognito MFA required for HR policy access (EEOC/privacy alignment)."},
   {rank:15,name:"Supply Chain Optimization",tier:"supp",
+   cap:"Enhances demand planning accuracy with ML forecasting augmented by AI scenario narratives — enabling planners to stress-test supply assumptions, assess supplier risk, and make faster, better-informed inventory decisions.",
+   industries:["Manufacturing","Consumer Goods","Logistics & Supply Chain"],
+   userPersonas:["Supply Chain Planner","Operations Analyst","Data Analyst"],
+   buyerPersonas:["COO / VP Operations","Plant Manager / VP Operations"],
    genLo:700,genHi:3000,nonLo:500,nonHi:1800,infLo:200,infHi:700,
    rag:"Optional",ragCost:"$350–$500",kbSize:"~500 supplier profiles",
    sub:"AI-driven demand forecasting, scenario planning, supplier risk",
@@ -547,6 +493,10 @@ const UC = [
    infSvc:"KMS; IAM; Glue data catalog encryption; CloudTrail; VPC; Config; CloudWatch on ETL pipeline health",
    just:"Sonnet narrative/scenario layer moderate cost. SageMaker + Glue ETL is the dominant non-GenAI cost driver. Glue catalog encryption + CloudWatch on pipelines for data integrity."},
   {rank:16,name:"Revenue Growth Management",tier:"supp",
+   cap:"Optimises pricing, promotions, and product mix using AI-driven analysis of market data, elasticity models, and competitive signals — improving margin and revenue without sacrificing volume.",
+   industries:["Consumer Goods","Retail & E-commerce","Manufacturing"],
+   userPersonas:["Data Analyst","Marketing Specialist","Finance Analyst"],
+   buyerPersonas:["CRO / VP Sales","CMO / VP Marketing"],
    genLo:600,genHi:2500,nonLo:400,nonHi:1500,infLo:200,infHi:600,
    rag:"No",ragCost:"$0",kbSize:"N/A",
    sub:"AI-powered pricing and promotion optimization",
@@ -555,6 +505,10 @@ const UC = [
    infSvc:"KMS; IAM; Secrets Manager (market data API keys); CloudTrail; WAF; VPC; CloudWatch on pricing pipeline",
    just:"Sonnet used for explanation layer only — moderate inference cost. SageMaker + market data API fees dominate non-GenAI. Secrets Manager for external market data API keys."},
   {rank:17,name:"Internal Knowledge Management",tier:"supp",
+   cap:"Deploys a company-wide AI assistant that surfaces answers from internal wikis, documentation, and policies via secure RAG — eliminating knowledge silos and reducing time-to-answer for employees across departments.",
+   industries:["Cross-Industry","B2B / SaaS","Human Resources"],
+   userPersonas:["Operations Analyst","HR Specialist","Software Developer"],
+   buyerPersonas:["CIO / VP Technology","CHRO / VP People"],
    genLo:300,genHi:1500,nonLo:250,nonHi:900,infLo:150,infHi:500,
    rag:"Yes",ragCost:"$500–$1,000",kbSize:"~5,000+ enterprise docs",
    sub:"RAG-powered chatbot, SSO integration, secure LLM access",
@@ -563,6 +517,10 @@ const UC = [
    infSvc:"Cognito MFA + SSO; KMS; IAM (department-level segmentation); CloudTrail; WAF; VPC endpoints; Config",
    just:"Haiku keeps Q&A cost low; large corpus drives storage. OpenSearch Serverless OCU minimum + S3 sync pipeline. Department-level IAM segmentation required to prevent cross-team data leakage."},
   {rank:18,name:"Hyper-Personalized Marketing",tier:"supp",
+   cap:"Generates individually tailored marketing content and recommendations at scale — using AI to segment audiences, predict preferences, and deliver personalised messages across every channel in real time.",
+   industries:["Retail & E-commerce","Consumer Goods","B2B / SaaS"],
+   userPersonas:["Marketing Specialist","Data Analyst","Customer Support Agent"],
+   buyerPersonas:["CMO / VP Marketing","CRO / VP Sales"],
    genLo:800,genHi:4000,nonLo:400,nonHi:1500,infLo:200,infHi:700,
    rag:"Optional",ragCost:"$350–$500",kbSize:"~500 persona profiles",
    sub:"AI-driven customer segmentation, real-time personalization",
@@ -571,6 +529,10 @@ const UC = [
    infSvc:"KMS; IAM; Macie (customer PII in S3); CloudTrail; WAF; VPC; Shield Standard (Pinpoint endpoint protection)",
    just:"Sonnet per-segment content generation scales with segments × frequency. Amazon Personalize real-time recommendations adds meaningful baseline. Macie mandatory for customer PII in marketing data lakes."},
   {rank:19,name:"Data Monetization & Marketplace",tier:"supp",
+   cap:"Enables data-product businesses to automatically enrich, tag, and publish datasets to AWS Marketplace — reducing time-to-revenue for data assets and unlocking 4–5× larger deal sizes through AI-enhanced discovery.",
+   industries:["B2B / SaaS","Financial Services","Cross-Industry"],
+   userPersonas:["Data Analyst","Software Developer","Operations Analyst"],
+   buyerPersonas:["CDO / Chief Data Officer","CRO / VP Sales"],
    genLo:400,genHi:1800,nonLo:300,nonHi:1000,infLo:200,infHi:600,
    rag:"Optional",ragCost:"$350–$500",kbSize:"~200 dataset descriptions",
    sub:"Automated data pipelines, AWS Marketplace enablement",
@@ -579,6 +541,10 @@ const UC = [
    infSvc:"Lake Formation row/column-level security; KMS; IAM; Macie (PII scan before publishing); CloudTrail; WAF; Config; Shield Standard",
    just:"Moderate Sonnet usage for metadata generation. Glue + Lake Formation + CloudFront data delivery. Lake Formation security + Macie PII scan mandatory before any external data publication."},
   {rank:20,name:"Embedded GenAI Features for SaaS",tier:"supp",
+   cap:"Provides SaaS builders a rapid-integration toolkit to embed GenAI capabilities — intelligent search, summarisation, and recommendations — into existing products, with multi-tenant isolation and per-customer customisation.",
+   industries:["B2B / SaaS","Cross-Industry","Retail & E-commerce"],
+   userPersonas:["Software Developer","Data Analyst","IT / Security Analyst"],
+   buyerPersonas:["CISO / CTO","CIO / VP Technology"],
    genLo:1000,genHi:6000,nonLo:500,nonHi:2000,infLo:400,infHi:1500,
    rag:"Optional",ragCost:"$350–$1,400",kbSize:"Variable per tenant",
    sub:"Toolkit for rapid GenAI integration, customizable UI components",
@@ -588,185 +554,274 @@ const UC = [
    just:"Widest range — depends entirely on end-user adoption. ECS/EKS SaaS runtime adds significant infrastructure baseline. Per-tenant KMS CMK + isolation is highest infra spend due to multi-tenancy compliance."}
 ];
 
-/* ── STATE ── */
-let filters = {hv:true, sp:true, rag:false};
+/* ═══════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════ */
+const filters = {
+  tier: new Set(['high','supp']),
+  industry: new Set(),
+  userPersona: new Set(),
+  buyerPersona: new Set(),
+  rag: false
+};
 let selectedRank = null;
-let detailChart = null;
+let drillChart = null;
 
-/* ── HELPERS ── */
-const $ = id => document.getElementById(id);
-const fmt = v => v >= 1000 ? '$' + (v/1000).toFixed(v%1000===0?0:1) + 'K' : '$' + v;
-const fmtK = v => '$' + (v/1000).toFixed(1) + 'K';
+/* ═══════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════ */
+const $  = id => document.getElementById(id);
+const fmt  = v => v >= 1000 ? '$'+(v/1000).toFixed(v%1000===0?0:1)+'K' : '$'+v;
+const fmtK = v => '$'+(v/1000).toFixed(1)+'K';
 
-/* ── FILTER TOGGLE ── */
-function toggleF(type) {
-  filters[type] = !filters[type];
-  const btn = $('f-' + type);
-  if (type === 'hv') btn.className = 'fp ' + (filters.hv ? 'on-gen' : '');
-  else if (type === 'sp') btn.className = 'fp ' + (filters.sp ? 'on-non' : '');
-  else btn.className = 'fp ' + (filters.rag ? 'on-rag' : '');
-  renderTable();
-}
-
-/* ── TABLE RENDER ── */
-function renderTable() {
-  const sort = $('sort-sel').value;
-  let data = UC.filter(s => {
-    if (!filters.hv && s.tier === 'high') return false;
-    if (!filters.sp && s.tier === 'supp') return false;
+function getFiltered() {
+  return UC.filter(s => {
+    if (!filters.tier.has(s.tier)) return false;
     if (filters.rag && s.rag !== 'Yes') return false;
+    if (filters.industry.size > 0 && !s.industries.some(i => filters.industry.has(i))) return false;
+    if (filters.userPersona.size > 0 && !s.userPersonas.some(p => filters.userPersona.has(p))) return false;
+    if (filters.buyerPersona.size > 0 && !s.buyerPersonas.some(p => filters.buyerPersona.has(p))) return false;
     return true;
   });
+}
+
+/* ═══════════════════════════════════════════════
+   FILTER PILLS BUILD
+═══════════════════════════════════════════════ */
+function buildFilterPills() {
+  const indCont = $('ind-pills');
+  const upCont  = $('up-pills');
+  const buyCont = $('buy-pills');
+
+  INDUSTRIES.forEach(ind => {
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.textContent = ind;
+    b.dataset.val = ind;
+    b.onclick = () => toggleSetFilter('industry', ind, b, 'on-ind');
+    indCont.appendChild(b);
+  });
+  USER_PERSONAS.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.textContent = p;
+    b.dataset.val = p;
+    b.onclick = () => toggleSetFilter('userPersona', p, b, 'on-up');
+    upCont.appendChild(b);
+  });
+  BUYER_PERSONAS.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.textContent = p;
+    b.dataset.val = p;
+    b.onclick = () => toggleSetFilter('buyerPersona', p, b, 'on-buy');
+    buyCont.appendChild(b);
+  });
+}
+
+function toggleFilter(type, val, btn) {
+  if (type === 'tier') {
+    if (filters.tier.has(val)) { if (filters.tier.size > 1) { filters.tier.delete(val); btn.classList.remove('on'); } }
+    else { filters.tier.add(val); btn.classList.add('on'); }
+  } else if (type === 'rag') {
+    filters.rag = !filters.rag;
+    btn.classList.toggle('on', filters.rag);
+  }
+  applyFilters();
+}
+
+function toggleSetFilter(type, val, btn, onClass) {
+  if (filters[type].has(val)) { filters[type].delete(val); btn.className = 'pill'; }
+  else { filters[type].add(val); btn.className = 'pill ' + onClass; }
+  applyFilters();
+}
+
+function clearFilters() {
+  filters.tier = new Set(['high','supp']);
+  filters.industry.clear();
+  filters.userPersona.clear();
+  filters.buyerPersona.clear();
+  filters.rag = false;
+  // reset all pill states
+  document.querySelectorAll('.pill').forEach(b => {
+    b.className = 'pill';
+  });
+  $('f-high').classList.add('on');
+  $('f-supp').classList.add('on');
+  applyFilters();
+}
+
+function applyFilters() {
+  renderTable();
+  updateStats();
+  // If selected row is now hidden, close drill
+  if (selectedRank !== null) {
+    const filtered = getFiltered();
+    if (!filtered.find(s => s.rank === selectedRank)) closeDrill();
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   TABLE RENDER
+═══════════════════════════════════════════════ */
+function renderTable() {
+  const sort = $('sort-sel').value;
+  let data = [...getFiltered()];
+
   if (sort === 'total-lo') data.sort((a,b) => (a.genLo+a.nonLo+a.infLo)-(b.genLo+b.nonLo+b.infLo));
   else if (sort === 'total-hi') data.sort((a,b) => (a.genHi+a.nonHi+a.infHi)-(b.genHi+b.nonHi+b.infHi));
   else if (sort === 'gen-pct') data.sort((a,b) => {
-    const pa = (a.genLo+a.genHi)/2/((a.genLo+a.nonLo+a.infLo+a.genHi+a.nonHi+a.infHi)/2);
-    const pb = (b.genLo+b.genHi)/2/((b.genLo+b.nonLo+b.infLo+b.genHi+b.nonHi+b.infHi)/2);
-    return pb - pa;
+    const pa = (a.genLo+a.genHi)/((a.genLo+a.nonLo+a.infLo+a.genHi+a.nonHi+a.infHi));
+    const pb = (b.genLo+b.genHi)/((b.genLo+b.nonLo+b.infLo+b.genHi+b.nonHi+b.infHi));
+    return pb-pa;
   });
-  else data.sort((a,b) => a.rank - b.rank);
+  else data.sort((a,b) => a.rank-b.rank);
 
   const tbody = $('table-body');
+  const noRes = $('no-results');
+  $('match-count').textContent = data.length;
+
+  if (data.length === 0) {
+    tbody.innerHTML = '';
+    noRes.style.display = 'block';
+    return;
+  }
+  noRes.style.display = 'none';
+
   let html = '';
   let lastTier = null;
   data.forEach(s => {
     if (sort === 'rank' && s.tier !== lastTier) {
-      const label = s.tier === 'high' ? 'High Value (Rank 1–10)' : 'Supplemental (Rank 11–20)';
-      html += `<tr class="section-row"><td colspan="4">${label}</td></tr>`;
+      html += `<tr class="section-row"><td colspan="8">${s.tier==='high'?'High Value Use Cases (Rank 1–10)':'Supplemental Use Cases (Rank 11–20)'}</td></tr>`;
       lastTier = s.tier;
     }
     const lo = s.genLo+s.nonLo+s.infLo, hi = s.genHi+s.nonHi+s.infHi;
+    const ragClass = s.rag==='Yes'?'rag-yes-c':s.rag==='Optional'?'rag-opt-c':'rag-no-c';
     const isActive = selectedRank === s.rank;
-    const ragClass = s.rag==='Yes'?'rag-yes':s.rag==='Optional'?'rag-opt':'rag-no';
+    const indChips = s.industries.map(i=>`<span class="chip chip-ind">${i}</span>`).join('');
+    const upChips  = s.userPersonas.map(p=>`<span class="chip chip-up">${p}</span>`).join('');
+    const buyChips = s.buyerPersonas.map(p=>`<span class="chip chip-buy">${p}</span>`).join('');
     html += `<tr class="${isActive?'active':''}" onclick="selectUC(${s.rank})">
       <td><span class="rank-num">${s.rank}</span></td>
       <td>
-        <div class="uc-name">
-          <span class="tier-dot ${s.tier==='high'?'td-high':'td-supp'}"></span>${s.name}
-        </div>
+        <div class="uc-name"><span class="tier-dot ${s.tier==='high'?'td-high':'td-supp'}"></span>${s.name}</div>
         <div class="uc-desc">${s.sub}</div>
       </td>
-      <td><span class="total-range">${fmt(lo)}–${fmt(hi)}</span></td>
+      <td><div class="d-text" style="font-size:11px;color:var(--off-white);line-height:1.5;max-width:300px">${s.cap.split('—')[0].trim()}</div></td>
+      <td><div class="chip-row">${indChips}</div></td>
+      <td><div class="chip-row">${upChips}</div></td>
+      <td><div class="chip-row">${buyChips}</div></td>
+      <td><span class="cost-range">${fmt(lo)}–${fmt(hi)}</span></td>
       <td><span class="rag-dot ${ragClass}" title="RAG: ${s.rag}"></span></td>
     </tr>`;
   });
   tbody.innerHTML = html;
 }
 
-/* ── SELECT USE CASE ── */
+/* ═══════════════════════════════════════════════
+   STATS UPDATE
+═══════════════════════════════════════════════ */
+function updateStats() {
+  const data = getFiltered();
+  const lo = data.reduce((a,s)=>a+s.genLo+s.nonLo+s.infLo,0);
+  const hi = data.reduce((a,s)=>a+s.genHi+s.nonHi+s.infHi,0);
+  const genMid = data.reduce((a,s)=>a+(s.genLo+s.genHi)/2,0);
+  const totMid = data.reduce((a,s)=>a+(s.genLo+s.nonLo+s.infLo+s.genHi+s.nonHi+s.infHi)/2,0);
+  $('s-lo').textContent = fmtK(lo);
+  $('s-hi').textContent = fmtK(hi);
+  $('s-gen-pct').textContent = totMid > 0 ? Math.round(genMid/totMid*100)+'%' : '—';
+  $('s-count').textContent = data.length;
+}
+
+/* ═══════════════════════════════════════════════
+   DRILL DOWN
+═══════════════════════════════════════════════ */
 function selectUC(rank) {
   selectedRank = rank;
   const s = UC.find(x => x.rank === rank);
 
-  // hide placeholder, show detail + chart
-  $('placeholder').style.display = 'none';
-  $('detail-card').classList.add('visible');
-  $('chart-card').classList.add('visible');
-
-  // populate detail
-  $('dp-rank').textContent = `Use Case #${s.rank} · ${s.tier === 'high' ? 'High Value' : 'Supplemental'}`;
+  $('dp-rank').textContent = `#${s.rank} · ${s.tier==='high'?'High Value':'Supplemental'}`;
   $('dp-name').textContent = s.name;
-  $('dp-sub').textContent = s.sub;
+  $('dp-desc').textContent = s.sub;
+
+  // chips
+  const ragCls = s.rag==='Yes'?'rb-yes':s.rag==='Optional'?'rb-opt':'rb-no';
+  const ragLbl = s.rag==='Yes'?'● RAG Required':s.rag==='Optional'?'◐ RAG Optional':'○ No RAG';
+  let chipsHtml = `<span class="rag-badge ${ragCls}">${ragLbl}${s.rag!=='No'?' · '+s.kbSize+' · '+s.ragCost+'/mo':''}</span>`;
+  s.industries.forEach(i => chipsHtml += `<span class="chip chip-ind" style="font-size:10px;padding:3px 9px">${i}</span>`);
+  s.userPersonas.forEach(p => chipsHtml += `<span class="chip chip-up" style="font-size:10px;padding:3px 9px">${p}</span>`);
+  s.buyerPersonas.forEach(p => chipsHtml += `<span class="chip chip-buy" style="font-size:10px;padding:3px 9px">${p}</span>`);
+  $('dp-chips').innerHTML = chipsHtml;
+
+  $('dp-cap').textContent = s.cap;
   $('dp-gen').textContent = s.genSvc;
   $('dp-non').textContent = s.nonSvc;
   $('dp-inf').textContent = s.infSvc;
   $('dp-just').textContent = s.just;
 
-  const ragClass = s.rag==='Yes'?'rb-yes':s.rag==='Optional'?'rb-opt':'rb-no';
-  const ragLabel = s.rag==='Yes'?'● RAG: Required':s.rag==='Optional'?'◐ RAG: Optional':'○ RAG: Not needed';
-  $('dp-rag-badge').innerHTML = `<span class="rag-badge-detail ${ragClass}">${ragLabel}${s.rag!=='No'?' · KB: '+s.kbSize+' · '+s.ragCost+'/mo':''}</span>`;
-
   // cost bars
   const maxHi = Math.max(s.genHi, s.nonHi, s.infHi);
   $('dp-bars').innerHTML = `
-    <div class="cb-row">
-      <span class="cb-label">GenAI</span>
-      <div class="cb-track"><div class="cb-fill gen" style="width:0" data-w="${Math.round(s.genHi/maxHi*100)}"></div></div>
-      <span class="cb-amt gen">${fmt(s.genLo)}–${fmt(s.genHi)}</span>
-    </div>
-    <div class="cb-row">
-      <span class="cb-label">Non-GenAI</span>
-      <div class="cb-track"><div class="cb-fill non" style="width:0" data-w="${Math.round(s.nonHi/maxHi*100)}"></div></div>
-      <span class="cb-amt non">${fmt(s.nonLo)}–${fmt(s.nonHi)}</span>
-    </div>
-    <div class="cb-row">
-      <span class="cb-label">Infra/Sec</span>
-      <div class="cb-track"><div class="cb-fill inf" style="width:0" data-w="${Math.round(s.infHi/maxHi*100)}"></div></div>
-      <span class="cb-amt inf">${fmt(s.infLo)}–${fmt(s.infHi)}</span>
-    </div>`;
-  // animate bars
+    <div class="cb-row"><span class="cb-lbl">GenAI</span><div class="cb-track"><div class="cb-fill gen" style="width:0" data-w="${Math.round(s.genHi/maxHi*100)}"></div></div><span class="cb-amt gen">${fmt(s.genLo)}–${fmt(s.genHi)}</span></div>
+    <div class="cb-row"><span class="cb-lbl">Non-GenAI</span><div class="cb-track"><div class="cb-fill non" style="width:0" data-w="${Math.round(s.nonHi/maxHi*100)}"></div></div><span class="cb-amt non">${fmt(s.nonLo)}–${fmt(s.nonHi)}</span></div>
+    <div class="cb-row"><span class="cb-lbl">Infra/Sec</span><div class="cb-track"><div class="cb-fill inf" style="width:0" data-w="${Math.round(s.infHi/maxHi*100)}"></div></div><span class="cb-amt inf">${fmt(s.infLo)}–${fmt(s.infHi)}</span></div>`;
   requestAnimationFrame(() => {
-    document.querySelectorAll('.cb-fill').forEach(el => {
-      el.style.width = el.dataset.w + '%';
-    });
+    document.querySelectorAll('.cb-fill').forEach(el => el.style.width = el.dataset.w + '%');
   });
 
   // chart
-  $('ct-title').textContent = s.name + ' — Cost Breakdown';
-  drawDetailChart(s);
+  drawDrillChart(s);
 
-  // re-render table rows for active highlight
+  // show panel and scroll to it
+  const panel = $('drill-panel');
+  panel.classList.add('visible');
+  setTimeout(() => panel.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
+
+  // re-highlight active row
   renderTable();
 }
 
-/* ── DETAIL CHART ── */
-function drawDetailChart(s) {
-  if (detailChart) { detailChart.destroy(); detailChart = null; }
-  const ctx = $('detail-chart');
+function closeDrill() {
+  selectedRank = null;
+  $('drill-panel').classList.remove('visible');
+  if (drillChart) { drillChart.destroy(); drillChart = null; }
+  renderTable();
+}
+
+function drawDrillChart(s) {
+  if (drillChart) { drillChart.destroy(); drillChart = null; }
   const FONT = {family:"'Open Sans'", size:10};
   const axc = '#7A90B4';
-  detailChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['GenAI (Bedrock)', 'Non-GenAI', 'Infra & Security'],
-      datasets: [
-        {
-          label: 'Low Estimate',
-          data: [s.genLo, s.nonLo, s.infLo],
-          backgroundColor: ['rgba(0,180,216,.45)', 'rgba(0,102,255,.45)', 'rgba(255,107,53,.45)'],
-          borderRadius: 5, borderSkipped: false
-        },
-        {
-          label: 'High Estimate',
-          data: [s.genHi, s.nonHi, s.infHi],
-          backgroundColor: ['#00B4D8', '#0066FF', '#FF6B35'],
-          borderRadius: 5, borderSkipped: false
-        }
+  drillChart = new Chart($('drill-chart'), {
+    type:'bar',
+    data:{
+      labels:['GenAI','Non-GenAI','Infra & Sec'],
+      datasets:[
+        {label:'Low',data:[s.genLo,s.nonLo,s.infLo],backgroundColor:['rgba(0,180,216,.4)','rgba(0,102,255,.4)','rgba(255,107,53,.4)'],borderRadius:5,borderSkipped:false},
+        {label:'High',data:[s.genHi,s.nonHi,s.infHi],backgroundColor:['#00B4D8','#0066FF','#FF6B35'],borderRadius:5,borderSkipped:false}
       ]
     },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { labels: { color: axc, font: FONT, boxWidth: 9, padding: 10 } },
-        tooltip: { callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmtK(ctx.raw) + '/mo' } }
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{labels:{color:axc,font:FONT,boxWidth:8,padding:8}},
+        tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+fmtK(ctx.raw)+'/mo'}}
       },
-      scales: {
-        x: { ticks: { color: axc, font: FONT }, grid: { color: 'rgba(255,255,255,.04)' } },
-        y: {
-          ticks: { color: axc, font: FONT, callback: v => fmtK(v) },
-          grid: { color: 'rgba(255,255,255,.06)' }
-        }
+      scales:{
+        x:{ticks:{color:axc,font:FONT},grid:{color:'rgba(255,255,255,.04)'}},
+        y:{ticks:{color:axc,font:FONT,callback:v=>fmtK(v)},grid:{color:'rgba(255,255,255,.05)'}}
       }
     }
   });
 }
 
-/* ── INIT STATS ── */
-function initStats() {
-  const lo = UC.reduce((a,s) => a+s.genLo+s.nonLo+s.infLo, 0);
-  const hi = UC.reduce((a,s) => a+s.genHi+s.nonHi+s.infHi, 0);
-  const genMid = UC.reduce((a,s) => a+(s.genLo+s.genHi)/2, 0);
-  const totMid = UC.reduce((a,s) => a+(s.genLo+s.nonLo+s.infLo+s.genHi+s.nonHi+s.infHi)/2, 0);
-  const ragCount = UC.filter(s => s.rag === 'Yes').length;
-  $('s-lo').textContent = fmtK(lo);
-  $('s-hi').textContent = fmtK(hi);
-  $('s-gen-pct').textContent = Math.round(genMid/totMid*100) + '%';
-  $('s-rag').textContent = ragCount + ' / ' + UC.length;
-}
-
+/* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
 window.addEventListener('DOMContentLoaded', () => {
+  buildFilterPills();
   renderTable();
-  initStats();
+  updateStats();
 });
 </script>
 </body>
